@@ -1,0 +1,95 @@
+using System;
+
+namespace ProgrammingTask
+{
+    // 1. Student Class
+    class Student
+    {
+        public string StudentID { get; set; }
+        public string Name { get; set; }
+        public string Course { get; set; }
+
+        // Constructor to initialize attributes
+        public Student(string studentID, string name, string course)
+        {
+            StudentID = studentID;
+            Name = name;
+            Course = course;
+        }
+
+        // Method to display student information
+        public void DisplayInfo()
+        {
+            Console.WriteLine($"Student ID: {StudentID}");
+            Console.WriteLine($"Name: {Name}");
+            Console.WriteLine($"Course: {Course}\n");
+        }
+    }
+
+    // 2. BankAccount Class
+    class BankAccount
+    {
+        // Private attributes (Encapsulation)
+        private string accountNumber;
+        private string accountHolder;
+        private double balance;
+
+        // Constructor to initialize attributes
+        public BankAccount(string accountNumber, string accountHolder, double initialBalance)
+        {
+            this.accountNumber = accountNumber;
+            this.accountHolder = accountHolder;
+            this.balance = initialBalance;
+        }
+
+        public void Deposit(double amount)
+        {
+            if (amount > 0)
+            {
+                balance += amount;
+                Console.WriteLine("Deposit Successful!");
+            }
+        }
+
+        public void Withdraw(double amount)
+        {
+            if (amount <= balance)
+            {
+                balance -= amount;
+                Console.WriteLine("Withdrawal Successful!");
+            }
+            else
+            {
+                Console.WriteLine("Insufficient Balance!");
+            }
+        }
+
+        public void DisplayBalance()
+        {
+            // :F2 ensures two decimal places
+            Console.WriteLine($"Current Balance: {balance:F2}");
+        }
+    }
+
+    // --- MAIN PROGRAM ---
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Student Section
+            Student student1 = new Student("2023001", "Maria Santos", "BS Computer Science");
+            Student student2 = new Student("2023002", "Juan Dela Cruz", "BS Information Technology");
+
+            student1.DisplayInfo();
+            student2.DisplayInfo();
+
+            // BankAccount Section
+            // Starting with 3000 as an example to reach 4500 after deposit/withdraw
+            BankAccount myAccount = new BankAccount("12345", "John Doe", 3000.00);
+            
+            myAccount.Deposit(2000.00);   // Balance: 5000.00
+            myAccount.Withdraw(500.00);   // Balance: 4500.00
+            myAccount.DisplayBalance();
+        }
+    }
+}
